@@ -53,7 +53,8 @@ class TextDataset(Dataset):
     def __init__(self, tokenizer: PreTrainedTokenizer, args, file_path: str, block_size=512):
         assert os.path.isfile(file_path)
 
-        block_size = block_size - (tokenizer.max_len - tokenizer.max_len_single_sentence)
+        block_size = block_size - (tokenizer.model_max_length - tokenizer.model_max_length
+                                   _single_sentence)
 
         directory, filename = os.path.split(file_path)
         cached_features_file = os.path.join(
